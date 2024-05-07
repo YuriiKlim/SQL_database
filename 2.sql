@@ -1,0 +1,13 @@
+CREATE TABLE STUDENT(
+	ID SERIAL PRIMARY KEY,  -- ПЕРВИННИЙ КЛЮЧ(ІДЕНТИФІКАТОР)
+	FIRST_NAME VARCHAR(20) NOT NULL,  -- НЕ МОЖЕ БУТИ ПОРОЖНІМ
+	LAST_NAME VARCHAR(20) NOT NULL,  -- НЕ МОЖЕ БУТИ ПОРОЖНІМ
+	AGE INT CHECK (AGE>0)
+)
+
+-- ЗМІНИТИ ТИП НА SERIAL
+-- ALTER TABLE STUDENT
+-- DROP COLUMN ID
+
+-- ALTER TABLE STUDENT
+-- ADD COLUMN ID SERIAL PRIMARY KEY

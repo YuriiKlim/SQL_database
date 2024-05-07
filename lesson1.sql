@@ -1,0 +1,9 @@
+--створюємо базу даних
+--CREATE DATABASE LESSON1
+
+--ПЕРЕІМЕНУВАТИ
+-- ALTER DATABASE LESSON RENAME TO LESSON1
+
+--ВИДАЛИТИ
+-- DROP DATABASE IF EXISTS LESSON1
+

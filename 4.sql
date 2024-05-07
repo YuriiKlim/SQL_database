@@ -1,0 +1,15 @@
+-- SELECT * -- УСІ СТОВПЧИКИ
+-- SELECT FIRST_NAME, LAST_NAME  -- КОНКРЕТНІ СТОВПЧИКИ
+-- SELECT FIRST_NAME + ' ' + LAST_NAME AS FULL_NAME  -- ПЕВНИЙ ВИРАЗ ПІД НОВИМ ІМЕНЕМ
+
+-- SELECT *
+-- FROM STUDENT
+-- WHERE AGE > 25
+
+-- SELECT *
+-- FROM STUDENT
+-- WHERE AGE BETWEEN 25 AND 30
+
+SELECT *
+FROM STUDENT
+WHERE FIRST_NAME LIKE 'M%'
