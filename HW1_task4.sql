@@ -1,0 +1,42 @@
+CREATE TYPE type_enum AS ENUM ('Fruit', 'Vegetable');
+CREATE TABLE FruitsAndVegetables (
+    ID SERIAL PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Type type_enum NOT NULL,
+    Color VARCHAR(30) NOT NULL,
+    Calories INT,
+    Description VARCHAR(255)
+);
+
+INSERT INTO FruitsAndVegetables (Name, Type, Color, Calories, Description) VALUES
+('Apple', 'Fruit', 'Red', 52, 'Juicy and sweet red apples are perfect for a healthy snack.'),
+('Banana', 'Fruit', 'Yellow', 89, 'Rich in potassium and good for quick energy boost.'),
+('Carrot', 'Vegetable', 'Orange', 41, 'Good for vision, rich in Vitamin A.'),
+('Broccoli', 'Vegetable', 'Green', 34, 'High in fiber and vitamin C, great for detox.'),
+('Strawberry', 'Fruit', 'Red', 32, 'Sweet and high in antioxidants.'),
+('Tomato', 'Vegetable', 'Red', 18, 'Rich in vitamin C and good for hydration.'),
+('Blueberry', 'Fruit', 'Blue', 57, 'Known for its antioxidant properties.'),
+('Cucumber', 'Vegetable', 'Green', 16, 'Great for hydration and low in calories.'),
+('Watermelon', 'Fruit', 'Red', 30, 'Contains 92% water, perfect for hot days.'),
+('Spinach', 'Vegetable', 'Green', 23, 'Loaded with nutrients and antioxidants.'),
+('Grapes', 'Fruit', 'Green', 69, 'Good source of vitamins C and K.'),
+('Bell Pepper', 'Vegetable', 'Red', 31, 'Sweet, juicy and rich in vitamins A and C.'),
+('Pineapple', 'Fruit', 'Yellow', 50, 'Sweet tropical fruit with digestive benefits.'),
+('Onion', 'Vegetable', 'White', 40, 'Used in various culinary dishes, adds flavor.'),
+('Orange', 'Fruit', 'Orange', 47, 'High in Vitamin C and fiber.'),
+('Lettuce', 'Vegetable', 'Green', 15, 'Low in calories and contains mostly water.'),
+('Peach', 'Fruit', 'Orange', 39, 'Juicy and sweet with a lot of vitamins.'),
+('Eggplant', 'Vegetable', 'Purple', 25, 'Low in calories and high in dietary fiber.'),
+('Cherries', 'Fruit', 'Red', 50, 'Sweet and sour flavor, good for sleep.'),
+('Garlic', 'Vegetable', 'White', 149, 'Known for its medicinal properties.'),
+('Kiwi', 'Fruit', 'Green', 61, 'Rich in vitamins C and K, and dietary fiber.'),
+('Celery', 'Vegetable', 'Green', 16, 'Low in calorie but high in water content.'),
+('Mango', 'Fruit', 'Yellow', 60, 'Rich in vitamin A, sweet and creamy texture.'),
+('Mushroom', 'Vegetable', 'Brown', 22, 'Rich in protein and can enhance umami flavor.'),
+('Pear', 'Fruit', 'Green', 57, 'Sweet with a soft, buttery texture.'),
+('Radish', 'Vegetable', 'Red', 16, 'Crunchy texture and mild spicy flavor.'),
+('Blackberry', 'Fruit', 'Black', 43, 'Dense in nutrients and good for skin health.'),
+('Beetroot', 'Vegetable', 'Purple', 43, 'Good for stamina and lowering blood pressure.'),
+('Papaya', 'Fruit', 'Orange', 43, 'Great for digestion and has anti-inflammatory properties.'),
+('Asparagus', 'Vegetable', 'Green', 20, 'High in fiber, folate, and vitamins A, C, and K.'),
+('Avocado', 'Fruit', 'Green', 160, 'Rich in healthy fats and very nutritious.');
