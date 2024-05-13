@@ -1,38 +1,51 @@
--- ALTER TABLE STUDENTS
--- ADD COLUMN Min_Score DECIMAL(3, 2),
--- ADD COLUMN Max_Score DECIMAL(3, 2);
+-- SELECT * FROM FruitsAndVegetables
+-- WHERE Type = 'Vegetable' AND Calories < 50;
 
--- UPDATE STUDENTS
--- SET Min_Score = ROUND(1 + RANDOM() * 4),   -- генерує випадкові оцінки від 1.00 до 5.00
---     Max_Score = ROUND(1 + RANDOM() * 4);   -- так само, для прикладу, максимальна оцінка в тому ж діапазоні
+-- SELECT * FROM FruitsAndVegetables
+-- WHERE Type = 'Fruit' AND Calories BETWEEN 50 AND 100;
 
---SELECT NAME FROM STUDENTS WHERE Min_Score BETWEEN 2.00 AND 3.00;
--- SELECT * FROM STUDENTS 
--- WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, B_DATE)) >= 20;
---SELECT * FROM STUDENTS 
---WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, B_DATE)) BETWEEN 18 AND 25;
---SELECT * FROM STUDENTS WHERE T_NUMBER LIKE '%777%';
---SELECT EMAIL FROM STUDENTS WHERE EMAIL LIKE 'a%';
---SELECT MIN(AVERAGE_SCORE) FROM STUDENTS;
---SELECT MAX(AVERAGE_SCORE) FROM STUDENTS;
---SELECT CITY, COUNT(*) AS student_count FROM STUDENTS GROUP BY CITY;
---SELECT COUNTRY, COUNT(*) AS student_count FROM STUDENTS GROUP BY COUNTRY;
---SELECT COUNT(MIN_GRADE_TEACHING) FROM STUDENTS WHERE MIN_GRADE_TEACHING = 'Mathematics' GROUP BY MIN_GRADE_TEACHING
---SELECT COUNT(MAX_GRADE_TEACHING) FROM STUDENTS WHERE MIN_GRADE_TEACHING = 'Mathematics' GROUP BY MAX_GRADE_TEACHING
---SELECT GROUP_NAME, COUNT(*) AS student_count FROM STUDENTS GROUP BY GROUP_NAME;
---SELECT GROUP_NAME, AVG(AVERAGE_SCORE) AS average_group_score FROM STUDENTS GROUP BY GROUP_NAME;
+-- SELECT * FROM FruitsAndVegetables
+-- WHERE Type = 'Vegetable' AND Name ILIKE '%Carrot%';
 
--- SELECT GROUP_NAME, 
--- AVG(AVERAGE_SCORE) AS average_group_score
--- FROM STUDENTS
--- GROUP BY GROUP_NAME
--- HAVING COUNT(*) >= 8;
+-- SELECT * FROM FruitsAndVegetables
+-- WHERE Description ILIKE '%sweet%';
 
-SELECT GROUP_NAME, 
-AVG(AVERAGE_SCORE) AS AVERAGE_GROUP_SCORE
-FROM STUDENTS
-WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, B_DATE)) > 25
-GROUP BY GROUP_NAME
-HAVING AVG(AVERAGE_SCORE) BETWEEN 3 AND 4;
+-- SELECT * FROM FruitsAndVegetables
+-- WHERE Color IN ('Yellow', 'Red');
 
+-- SELECT COUNT(*) FROM FruitsAndVegetables 
+-- WHERE Type = 'Vegetable';
 
+-- SELECT COUNT(*) 
+-- FROM FruitsAndVegetables 
+-- WHERE Type = 'Fruit';
+
+-- SELECT COUNT(*) 
+-- FROM FruitsAndVegetables 
+-- WHERE Color = 'Yellow';
+
+-- SELECT Color, COUNT(*) 
+-- FROM FruitsAndVegetables 
+-- GROUP BY Color;
+
+-- SELECT Color FROM FruitsAndVegetables 
+-- GROUP BY Color 
+-- ORDER BY COUNT(*) ASC LIMIT 1;
+
+-- SELECT Color FROM FruitsAndVegetables 
+-- GROUP BY Color 
+-- ORDER BY COUNT(*) DESC LIMIT 1;
+
+-- SELECT MIN(Calories) FROM FruitsAndVegetables;
+
+-- SELECT MAX(Calories) FROM FruitsAndVegetables;
+
+-- SELECT AVG(Calories) FROM FruitsAndVegetables;
+
+-- SELECT Name FROM FruitsAndVegetables 
+-- WHERE Type = 'Fruit' 
+-- ORDER BY Calories ASC LIMIT 1;
+
+-- SELECT Name FROM FruitsAndVegetables 
+-- WHERE Type = 'Fruit' 
+-- ORDER BY Calories DESC LIMIT 1;
