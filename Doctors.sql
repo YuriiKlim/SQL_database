@@ -1,0 +1,63 @@
+-- СТВОРЕННЯ ТАБЛИЦІ ЛІКАРІ (DOCTORS)
+
+CREATE TABLE DOCTORS (
+	ID SERIAL PRIMARY KEY,
+	NAME VARCHAR(255) NOT NULL CHECK (NAME <> ''),
+    SURNAME VARCHAR(255) NOT NULL CHECK (SURNAME <> ''),
+	PHONE CHAR(10),
+    SALARY NUMERIC NOT NULL CHECK (SALARY > 0)
+);
+
+-- НАПОВНЕННЯ ТАБЛИЦІ ЛІКАРІ
+	
+INSERT INTO doctors (name, phone, salary, surname) VALUES
+('John', '1234567890', 55000.00, 'Smith'),
+('Emma', '1234567891', 60000.00, 'Johnson'),
+('Olivia', '1234567892', 62000.00, 'Williams'),
+('Liam', '1234567893', 58000.00, 'Brown'),
+('Noah', '1234567894', 59000.00, 'Jones'),
+('Ava', '1234567895', 63000.00, 'Garcia'),
+('Sophia', '1234567896', 61000.00, 'Martinez'),
+('Isabella', '1234567897', 64000.00, 'Davis'),
+('Mason', '1234567898', 57000.00, 'Rodriguez'),
+('James', '1234567899', 65000.00, 'Martinez'),
+('Mia', '1234567800', 60000.00, 'Hernandez'),
+('Charlotte', '1234567801', 62000.00, 'Lopez'),
+('Amelia', '1234567802', 63000.00, 'Gonzalez'),
+('Evelyn', '1234567803', 58000.00, 'Wilson'),
+('Harper', '1234567804', 59000.00, 'Anderson'),
+('Elijah', '1234567805', 64000.00, 'Thomas'),
+('Oliver', '1234567806', 65000.00, 'Taylor'),
+('Lucas', '1234567807', 60000.00, 'Moore'),
+('Henry', '1234567808', 62000.00, 'Jackson'),
+('Alexander', '1234567809', 61000.00, 'Martin'),
+('Sebastian', '1234567810', 58000.00, 'Lee'),
+('Jack', '1234567811', 59000.00, 'Perez'),
+('Aiden', '1234567812', 64000.00, 'Thompson'),
+('Jackson', '1234567813', 63000.00, 'White'),
+('Levi', '1234567814', 60000.00, 'Harris'),
+('Mateo', '1234567815', 65000.00, 'Sanchez'),
+('David', '1234567816', 62000.00, 'Clark'),
+('Jaxon', '1234567817', 59000.00, 'Ramirez'),
+('Grayson', '1234567818', 64000.00, 'Lewis'),
+('Carter', '1234567819', 61000.00, 'Robinson'),
+('Wyatt', '1234567820', 58000.00, 'Walker'),
+('Dylan', '1234567821', 65000.00, 'Young'),
+('Luke', '1234567822', 63000.00, 'Allen'),
+('Gabriel', '1234567823', 60000.00, 'King'),
+('Michael', '1234567824', 62000.00, 'Wright'),
+('Julian', '1234567825', 64000.00, 'Scott'),
+('Isaac', '1234567826', 61000.00, 'Torres'),
+('Jayden', '1234567827', 58000.00, 'Nguyen'),
+('Lincoln', '1234567828', 59000.00, 'Hill'),
+('Madison', '1234567829', 65000.00, 'Flores'),
+('Scarlett', '1234567830', 63000.00, 'Green'),
+('Victoria', '1234567831', 60000.00, 'Adams'),
+('Aria', '1234567832', 62000.00, 'Nelson'),
+('Grace', '1234567833', 64000.00, 'Baker'),
+('Chloe', '1234567834', 61000.00, 'Hall'),
+('Camila', '1234567835', 58000.00, 'Rivera'),
+('Penelope', '1234567836', 59000.00, 'Campbell'),
+('Layla', '1234567837', 65000.00, 'Mitchell'),
+('Riley', '1234567838', 63000.00, 'Carter');
+
