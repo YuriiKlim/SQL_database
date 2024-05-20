@@ -1,0 +1,31 @@
+-- СТВОРЕННЯ ТАБЛИЦІ ЛЕКЦІЇ (LECTURES)
+CREATE TABLE LECTURES (
+    ID SERIAL PRIMARY KEY,
+    LECTURE_ROOM VARCHAR NOT NULL CHECK (LECTURE_ROOM <> ''),
+    SUBJECT_ID INT NOT NULL,
+    TEACHER_ID INT NOT NULL
+);
+
+-- ЗАПОВНЕННЯ ТАБЛИЦІ ЛЕКЦІЇ
+INSERT INTO LECTURES (LECTURE_ROOM, SUBJECT_ID, TEACHER_ID) VALUES
+('ROOM 101', 1, 1),
+('ROOM 102', 2, 2),
+('ROOM 103', 3, 3),
+('ROOM 104', 4, 4),
+('ROOM 105', 5, 5),
+('ROOM 106', 6, 6),
+('ROOM 107', 7, 7),
+('ROOM 108', 8, 8),
+('ROOM 109', 9, 9),
+('ROOM 110', 10, 10),
+('ROOM 111', 11, 11),
+('ROOM 112', 12, 12),
+('ROOM 113', 13, 13),
+('ROOM 114', 14, 14),
+('ROOM 115', 15, 15),
+('ROOM 116', 16, 16),
+('ROOM 117', 17, 17),
+('ROOM 118', 18, 18),
+('ROOM 119', 19, 19),
+('ROOM 120', 20, 20);
+
