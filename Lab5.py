@@ -5,16 +5,16 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import text
 import json
 
-
 with open('config.json', 'r') as f:
     data = json.load(f)
-    db_user = data['user']  # postgres
+    db_user = data['user']
     db_password = data['password']
 
 db_url = f'postgresql+psycopg2://{db_user}:{db_password}@localhost:5432/People'
 engine = create_engine(db_url)
 
 Base = declarative_base()
+
 
 class Person(Base):
     __tablename__ = 'person'
@@ -25,20 +25,15 @@ class Person(Base):
     country = Column(String(256))
     birthd_date = Column(Date)
 
+
 # створення таблиці
 Base.metadata.create_all(bind=engine)
 
-#створення сесії
+# створення сесії
 Session = sessionmaker(bind=engine)
 session = Session()
 
-#добавлення рядків
-
-# person1 = Person(firs_name='john', surrname='smith', city='Kyiv', country='Ukrain', birthd_date='01-01-2000')
-# person2 = Person(firs_name='Mary', surrname='smith', city='Kyiv', country='Ukrain', birthd_date='01-01-2000')
-#
-# session.add_all([person1,person2])
-# session.commit()
+valid_tables = ["person"]
 
 while True:
     print("Введіть команду")
@@ -56,80 +51,86 @@ while True:
     if command == "":
         break
     elif command == "1":
-        user_query = input('Ввудіть запит')
-        result = session.execute(text(user_query))
-        print(result)
-        for person in result:
-            print(person.first_name, person.surrname)
+        user_query = input('Введіть запит: ')
+
+        query_words = user_query.split()
+        table_name = query_words[3] if len(query_words) > 2 else ""
+        if table_name not in valid_tables:
+            print(f"Помилка: неправильна назва таблиці '{table_name}'")
+            continue
+
+        if user_query.strip().upper().startswith("DELETE") or user_query.strip().upper().startswith("UPDATE"):
+            if "WHERE" not in user_query.upper():
+                print("Помилка: запити DELETE та UPDATE без умов заборонені.")
+                continue
+
+        try:
+            result = session.execute(text(user_query))
+            session.commit()
+
+            if user_query.strip().upper().startswith("SELECT"):
+                for row in result:
+                    print(row)
+            else:
+                print(f"Запит виконано успішно: {user_query}")
+
+        except Exception as e:
+            print(f"Помилка при виконанні запиту: {e}")
 
     elif command == '2':
         result = session.query(Person).all()
-
         for person in result:
             print(person.firs_name, person.surrname)
 
     elif command == "3":
-        city = input('введіть місто')
-
-        # result = session.query(Person).filter_by(city=city).all()
-        result = session.query(Person).filter(city == city).all()
+        city = input('Введіть місто: ')
+        result = session.query(Person).filter_by(city=city).all()
         for person in result:
             print(person.firs_name, person.surrname, person.city)
 
     elif command == "4":
-        city = input('введіть місто')
-        country = input('введіть країни')
-
-        result = session.query(Person).filter(or_(
-            Person.city == city,
-            Person.country == country
-        ))
+        city = input('Введіть місто: ')
+        country = input('Введіть країну: ')
+        result = session.query(Person).filter(or_(Person.city == city, Person.country == country)).all()
         for person in result:
             print(person.firs_name, person.surrname, person.city, person.country)
 
     elif command == "5":
-        letter = input('Введіть літеру')
-
-        result = session.query(Person).filter(
-            Person.firs_name.like(f'{letter}%')
-        )
-
+        letter = input('Введіть літеру: ')
+        result = session.query(Person).filter(Person.firs_name.like(f'{letter}%')).all()
         for person in result:
             print(person.firs_name, person.surrname)
 
     elif command == "6":
         person = Person(
-        firs_name = input("Введіть ім'я"),
-        surrname = input("Введіть прізвище"),
-        city = input("Введіть місто"),
-        country = input("Введіть країну"),
-        birthd_date = input("Введіть дату народженя (дд-мм-рррр)")
+            firs_name=input("Введіть ім'я: "),
+            surrname=input("Введіть прізвище: "),
+            city=input("Введіть місто: "),
+            country=input("Введіть країну: "),
+            birthd_date=input("Введіть дату народження (дд-мм-рррр): ")
         )
-
         session.add(person)
         session.commit()
 
     elif command == "7":
-        first_name = input("Ввудіть ім'я")
+        first_name = input("Введіть ім'я: ")
+        person = session.query(Person).filter(Person.firs_name == first_name).first()
 
-        person = session.query(Person).filter(
-            Person.firs_name == first_name
-        ).first()
-
-        person.city=input("Введіть місто"),
-        person.country=input("Введіть країну"),
-
-        session.commit()
+        if person:
+            person.city = input("Введіть місто: ")
+            person.country = input("Введіть країну: ")
+            session.commit()
+        else:
+            print("Запис не знайдено")
 
     elif command == "8":
-        first_name = input("Введіть ім'я")
+        first_name = input("Введіть ім'я: ")
+        person = session.query(Person).filter(Person.firs_name == first_name).first()
 
-        person = session.query(Person).filter(
-            Person.firs_name == first_name
-        ).first()
-
-        session.delete(person)
-        session.commit()
+        if person:
+            session.delete(person)
+            session.commit()
+        else:
+            print("Запис не знайдено")
 
 session.close()
-
