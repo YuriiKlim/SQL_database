@@ -50,6 +50,7 @@ def report_doctors_not_on_vacation():
             vacations.c.end_date >= today
         )
     ).subquery()
+
     subquery = select(subquery)
 
     result = session.query(docs.c.surname,
