@@ -1,0 +1,138 @@
+127.0.0.1:6379> set username Yurii
+OK
+127.0.0.1:6379> rpush todo_list "Поготувати обід"
+(integer) 1
+127.0.0.1:6379> rpush todo_list "Вивчити Redis"
+(integer) 2
+127.0.0.1:6379> lrange todo_list 0 -1
+1) "\xd0\x9f\xd0\xbe\xd0\xb3\xd0\xbe\xd1\x82\xd1\x83\xd0\xb2\xd0\xb0\xd1\x82\xd0\xb8 \xd0\xbe\xd0\xb1\xd1\x96\xd0\xb4"
+2) "\xd0\x92\xd0\xb8\xd0\xb2\xd1\x87\xd0\xb8\xd1\x82\xd0\xb8 Redis"
+127.0.0.1:6379> hset user_data age 25
+(integer) 1
+127.0.0.1:6379> hset user_data country Ukraine
+(integer) 1
+127.0.0.1:6379> hgetall user_data
+1) "age"
+2) "25"
+3) "country"
+4) "Ukraine"
+127.0.0.1:6379> sadd tags programming
+(integer) 1
+127.0.0.1:6379> sadd tags redis
+(integer) 1
+127.0.0.1:6379> sadd tags tutorial
+(integer) 1
+127.0.0.1:6379> smembers tags
+1) "programming"
+2) "redis"
+3) "tutorial"
+127.0.0.1:6379> incrby page_views 5
+(integer) 5
+127.0.0.1:6379> get page_vievs
+(nil)
+127.0.0.1:6379> get page_views
+"5"
+127.0.0.1:6379> set sessiob_token abc123
+OK
+127.0.0.1:6379> expire session_tocken 120
+(integer) 0
+127.0.0.1:6379> expire session_token 120
+(integer) 0
+127.0.0.1:6379> expire sessiob_token 120
+(integer) 1
+127.0.0.1:6379> del username
+(integer) 1
+127.0.0.1:6379> exists username
+(integer) 0
+127.0.0.1:6379> set user:1:name yurii
+OK
+127.0.0.1:6379> keys user:*
+1) "user:1:name"
+127.0.0.1:6379> setbit online_status 0 1
+(integer) 0
+127.0.0.1:6379> getbit online_status
+(error) ERR wrong number of arguments for 'getbit' command
+127.0.0.1:6379> getbit online_status 0
+(integer) 1
+127.0.0.1:6379> multi
+OK
+127.0.0.1:6379(TX)> set balance 1000
+QUEUED
+127.0.0.1:6379(TX)> get balance
+QUEUED
+127.0.0.1:6379(TX)> exec
+1) OK
+2) "1000"
+127.0.0.1:6379> sadd cache:popular_articles 101
+(integer) 1
+127.0.0.1:6379> sadd cache:popular_articles 102
+(integer) 1
+127.0.0.1:6379> sadd cache:popular_articles 103
+(integer) 1
+127.0.0.1:6379> sadd set1 a b c
+(integer) 3
+127.0.0.1:6379> sadd set2 b c d
+(integer) 3
+127.0.0.1:6379> sunionstore union_set set1 set2
+(integer) 4
+127.0.0.1:6379> sinterstore intersection_set set1 set2
+(integer) 2
+127.0.0.1:6379> smembers union_set
+1) "a"
+2) "b"
+3) "c"
+4) "d"
+127.0.0.1:6379> smembers intersection_set
+1) "b"
+2) "c"
+127.0.0.1:6379> subsribe messages
+(error) ERR unknown command 'subsribe', with args beginning with: 'messages'
+127.0.0.1:6379> subscribe messages
+1) "subscribe"
+2) "messages"
+3) (integer) 1
+127.0.0.1:6379(subscribed mode)> hi
+(error) ERR unknown command 'hi', with args beginning with:
+127.0.0.1:6379(subscribed mode)> geoadd location 30.5040 50.4030 place1
+(error) ERR Can't execute 'geoadd': only (P|S)SUBSCRIBE / (P|S)UNSUBSCRIBE / PING / QUIT / RESET are allowed in this context
+127.0.0.1:6379> geoadd location 30.5040 50.4030 place1
+(integer) 1
+127.0.0.1:6379> geoadd location 30.3040 50.7030 place2
+(integer) 1
+127.0.0.1:6379> rpush tasks task1
+(integer) 1
+127.0.0.1:6379> rpush tasks task2
+(integer) 2
+127.0.0.1:6379> rpush tasks task3
+(integer) 3
+127.0.0.1:6379> lrange tasks 0 -1
+1) "task1"
+2) "task2"
+3) "task3"
+127.0.0.1:6379> rpush tasks task4
+(integer) 4
+127.0.0.1:6379> lpop tasks
+"task1"
+127.0.0.1:6379> lrange tasks 0 -1
+1) "task2"
+2) "task3"
+3) "task4"
+127.0.0.1:6379> pfadd unique_users user1
+(integer) 1
+127.0.0.1:6379> pfadd unique_users user2
+(integer) 1
+127.0.0.1:6379> pfadd unique_users user3
+(integer) 1
+127.0.0.1:6379> pfcount unique_users
+(integer) 6
+127.0.0.1:6379> rpush message_queue message1
+(integer) 1
+127.0.0.1:6379> rpush message_queue message2
+(integer) 2
+127.0.0.1:6379> rpush message_queue message3
+(integer) 3
+127.0.0.1:6379> lrange message_queue 0 -1
+1) "message1"
+2) "message2"
+3) "message3"
+127.0.0.1:6379> exit
